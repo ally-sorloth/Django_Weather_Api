@@ -8,6 +8,12 @@
 </head>
 <body>
     <h1>Weather APP</h1>
+    {% if messages %}
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+
+    {% endif %}
     <form action="" method="POST">
         {% csrf_token %}
         {{ form }}

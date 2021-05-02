@@ -5,6 +5,7 @@ from pprint import pprint
 
 from .forms import CityForm
 from .models import City
+from django.contrib import messages
 
 def index(request):
     form = CityForm()
@@ -17,7 +18,11 @@ def index(request):
     if request.method == "POST":
         form = CityForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_city = form.cleaned_data["name"]
+            if not City.objects.filter(name=new_city).exists():
+                form.save()
+            else:
+                messages.warning(request, "City already exists")
             return redirect("home")
     
     city_data = []
