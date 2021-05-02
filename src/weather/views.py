@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from decouple import config
 import requests
 from pprint import pprint
@@ -14,6 +14,12 @@ def index(request):
     
     # print(type(a))
     # pprint(content)
+    if request.method == "POST":
+        form = CityForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+    
     city_data = []
     for city in cities: 
         # print(city)
