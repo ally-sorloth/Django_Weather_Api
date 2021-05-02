@@ -2,9 +2,12 @@ from django.shortcuts import render
 from decouple import config
 import requests
 from pprint import pprint
+
+from .forms import CityForm
 from .models import City
 
 def index(request):
+    form = CityForm()
     cities = City.objects.all()
     url = config("BASE_URL")
     
@@ -28,7 +31,8 @@ def index(request):
     # print(city_data)
         
     context = {
-        "city_data": city_data
+        "city_data": city_data,
+        "form": form
     }
     return render(request, "weather/index.html", context)
 
