@@ -9,7 +9,7 @@ def index(request):
     r = requests.get(url.format(city))
     content = r.json()
     # print(type(a))
-    # pprint(a)
+    # pprint(content)
     context = {
         "city": city,
         "temp": content["main"]["temp"],
