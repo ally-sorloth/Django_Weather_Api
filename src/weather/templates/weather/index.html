@@ -8,8 +8,13 @@
 </head>
 <body>
     <h1>Weather APP</h1>
-    {{ city }} <br>
-    {{ temp }} <br>
-    {{ description }} <br>
+    {% for city in city_data %}
+    {{ city.city }} <br>
+    <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="Image"> <br>
+    {{ city.temp }} <br>
+    {{ city.description }} <br>
+    <hr>
+
+    {% endfor %}
 </body>
 </html>
